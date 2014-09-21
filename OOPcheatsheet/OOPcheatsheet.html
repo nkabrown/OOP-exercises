@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<title>Objects</title>
+		<script>
+			$(document).ready(function(){
+				var x = 8;
+				//object literal
+				var my_car = {
+					brand: "prius",
+					wheels: 4
+				}
+
+				console.log(my_car);
+
+				var nbrown = {
+					height: "5'10",
+					weight: "150 pounds"
+				}
+
+				console.log(nbrown.height);
+
+				var marker = {
+					color: "blue",
+					width: "500px",
+					height: "50px",
+					brand: "Expo Scents",
+					hasInk: true
+				}
+
+				console.log(marker.color);
+				console.log(marker.hasInk);
+
+				var human = {
+					gender: "male",
+					name: "Nathan",
+					language: "english",
+					hasHair: true
+				}
+				
+				//constructor function
+				function Car(brandParam, wheelsParam) {
+					this.brand = brandParam;
+					this.wheels = wheelsParam;
+				}
+
+				//instantiation - creating instances of objects
+				var myCar = new Car("Toyota", 4);
+				var myOtherCar = new Car("Porsche", 4);
+
+				//********
+				function Computer(brandParam, modelParam) {
+					this.brand = brandParam;
+					this.model = modelParam;
+				}
+
+				var shoComputer = new Computer("Apple", "Air");
+				var abbyComputer = new Computer("Quantum", "NASA");
+
+				console.log(abbyComputer.brand, shoComputer.brand);
+
+				//storing functions in attributes
+				var my_phone = {
+					brand: "Verizon",
+					friendly_brand : function() {
+						return "You're phone's brand is " + this.brand;
+					}
+				}
+
+				console.log(my_phone.friendly_brand())
+				
+				function Dinosaur(dinoNameParam, dinoDietParam, dinoTeethParam) {
+					this.dinoName = dinoNameParam;
+					this.dinoDiet = dinoDietParam;
+					this.dinoTeeth = dinoTeethParam; //boolean
+
+					this.eat = function(){
+						if(this.dinoTeeth){
+							$("#yoshi").show();
+							
+							$("#yoshi").append("<p>");
+							$("#yoshi p").html("I am eating "+ this.dinoDiet +" with my teeth");
+
+							//return "I am eating " + this.dinoDiet+" with my teeth.";
+						}else{
+							$("#yoshi").show();
+							return "I am eating " + this.dinoDiet+" with a straw because I have no teeth.";
+						}
+						
+
+					}
+				}
+				//instantiates Dinosaur object and puts it in the variable yoshi
+				var yoshi = new Dinosaur("yoshi", "apples", true);
+
+				//console.log(yoshi.eat());
+				$("#makeYoshiEat").click(function(){
+					//runs the method eat() of the Dinosaur object
+					yoshi.eat();
+					//removes the button so you can't keep pressing it
+					$("#makeYoshiEat").hide();
+				})
+
+				//prototypical objects
+				function House(){
+					this.color = "white"
+					this.roomNumber = 4
+				}
+
+				//prototypical objects
+				var my_house = new House();
+
+				console.log(my_house.color);
+
+				House.prototype.color = "black";
+				House.prototype.ceilingColor = "red";
+
+				console.log(my_house.ceilingColor);
+				console.log(my_house.color);
+				var dogHouse = new House();
+				console.log(dogHouse.color);
+
+				my_house.color = "black";
+				console.log(my_house.color);
+				
+				function User(fn, ln, em){
+					this.fName = fn;
+					this.lName = ln;
+					this.email = em;
+					this.cred = function(){
+						return fn + " " + ln + " " + em;
+					}
+				}
+
+				function Admin(){
+					this.admin = true;
+					this.hasAccess = true;
+					this.canSeeDatabase = true;
+				}
+
+				Admin.prototype = new User("Nathan", "Brown", "nkabrown@gmail.com");
+
+				var newAdmin = new Admin();
+
+				console.log(newAdmin.fName);
+
+				Admin.prototype = new User("Nathan2", "Brown2", "nkabrown@gmail.com");
+				
+				var newAdmin2 = new Admin();
+
+				console.log(newAdmin2.fName);
+				console.log(newAdmin.cred());
+			});
+
+
+		</script>
+
+		<style>
+			#yoshi {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="yoshi">
+			<img src="images/yoshi.gif">
+		</div>
+		<input type="button" value="eat" id="makeYoshiEat">
+	</body>
+</html>

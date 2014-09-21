@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Jukebox Record Player</title>
+    <script>
+      function Jukebox(location) {
+          this.location = location;
+          this.currentlyPlaying = [];
+          this.addRecord = function(x){
+              this.currentlyPlaying.push(x);
+              alert(x.title + " by " + x.artist + " is playing.");
+              var currentlyPlaying = x;
+              console.log(Jukebox.currentlyPlaying);
+              console.log(currentlyPlaying.title);
+              console.log(currentlyPlaying.artist);
+              console.log(currentlyPlaying.title + " by " + currentlyPlaying.artist + " is playing.");
+
+          }
+          this.switchRecord = function(y){
+              
+              this.currentlyPlaying.pop(y);
+              this.currentlyPlaying.push(y);
+              currentlyPlaying = y;
+              alert(y.title + " by " + y.artist + " is now playing.");
+
+              
+              
+              //this.currentlyPlaying.push(x[]);
+              //console.log(currentlyPlaying.title);
+          }
+      }
+      var Jukebox = new Jukebox("biker bar");
+      console.log(Jukebox);
+      var recordOne = new Record("Back in Black", "ac/dc");
+      console.log(recordOne);
+      var recordTwo = new Record("Ride the Lightning", "Metallica");
+      console.log(recordTwo);
+      var recordThree = new Record("Somewhere in Time", "Iron Maiden");
+      console.log(recordThree)
+      var records = [recordOne, recordTwo, recordThree];
+
+
+      Jukebox.addRecord(records[1]);
+
+      Jukebox.switchRecord(records[0]);
+
+      function Record(t, a) {
+          this.title = t;
+          this.artist = a;
+      }
+      
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

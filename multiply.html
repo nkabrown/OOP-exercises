@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Multiplier</title>
+	<script>
+	
+	
+		function Multiplier(x) {
+			var previousValue = null
+			this.getCurrentValue = function() {
+				return previousValue;
+			};
+
+			this.multiply = function(x) {
+				var a = x;
+				var b = a * 1;
+				previousValue = b;
+				return alert(b);
+			}	
+			
+
+		}
+
+		Multiplier(4);
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

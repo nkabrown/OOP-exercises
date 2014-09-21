@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function Person(fn, ln){
+			this.fname = fn;
+			this.lname = ln;
+			this.getName = function(){
+				return fn + " " + ln;
+			}
+		}
+
+		function Teacher(id, office){
+			this.teacherID = id;
+			this.office = office;
+			this.isTeacher = true;
+			this.isStudent = false;
+		}
+
+		function Student(id, classParam){
+			this.studentID = id;
+			this.studentClass = classParam;
+			this.isTeacher = false;
+			this.isStudent = true;
+		}
+
+		function School(schoolName){
+			this.schoolName = schoolName;
+			this.students = [];
+			this.teachers = [];
+			this.addMember = function(x){
+				if(x.isTeacher){
+					//alert("This member is a teacher");
+					this.teachers.push(x);
+					alert("Member Added: "+ x.getName() + "\nType: Teacher");
+				}else if(x.isStudent){
+					//alert("This member is a student")
+					this.students.push(x);
+					alert("Member Added: "+ x.getName() + "\nType: Student");
+				}	
+					
+			}
+
+		}
+
+		Teacher.prototype = new Person("Al", "Olsen");
+		var teacherOne = new Teacher("n1", "wwh328");
+		console.log(teacherOne.getName());
+		console.log(teacherOne.office);
+
+		Teacher.prototype = new Person("Sam", "Frons");
+		var teacherTwo = new Teacher("n2", "wwh329");
+
+		Student.prototype = new Person("Abby", "Ryan");
+		var studentOne = new Student("s1", "Prospect");
+		console.log(studentOne.getName());
+		console.log(studentOne.classParam);
+		
+		Student.prototype = new Person("Nathan", "Brown");
+		var studentTwo = new Student("s2", "Prospect");
+		console.log(studentTwo.getName());
+
+		var NYCDA = new School("NYCDA");
+		console.log(NYCDA.schoolName);
+
+		NYCDA.addMember(teacherOne);
+		NYCDA.addMember(studentOne);
+		NYCDA.addMember(teacherTwo);
+		NYCDA.addMember(studentTwo);
+
+		console.log(NYCDA.students[0]);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Properties Exercise</title>
+	<script>
+		
+		//list the properties of a JavaScript obj in a constructor function
+		function Book(pc, g, c) {
+			this.pageCount = pc;
+			this.genre = g;
+			this.cover = c;
+		}
+
+		var bookOne = new Book(330, "sci fi", "softcover");
+		var bookTwo = new Book(564, "novel", "hardcover");
+
+		console.log(Object.getOwnPropertyNames(bookOne));
+		console.log(bookOne, bookTwo);
+
+		//list the properties of a JavaScript obj in an object literal
+		var Book = {
+			pageCount: 999,
+			genre: "History",
+			cover: "hardcover"
+		}
+
+		for (var prop in Book) {
+			console.log("o." + prop + " = " + Book[prop]);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
